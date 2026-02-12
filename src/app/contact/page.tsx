@@ -63,7 +63,7 @@ export default function PublisherContactPage() {
   };
 
   return (
-    <main className="bg-white">
+    <main className="bg-white overflow-x-hidden">
       <Navigation />
       
       {/* Header Section */}

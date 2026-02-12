@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function EditorialHeader() {
   return (
-    <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-[80vh] min-h-[500px] flex items-center justify-center overflow-hidden">
       {/* Full Background Image */}
       <div className="absolute inset-0">
         <Image

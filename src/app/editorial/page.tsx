@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function EditorialTeamPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
         <Navigation />
       <EditorialHeader />
       <EditorInChiefSection />

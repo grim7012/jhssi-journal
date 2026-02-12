@@ -74,14 +74,15 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="w-full bg-white border-b border-[#E6DDCF] px-8 py-4">
+    <nav className="w-full bg-white border-b border-[#E6DDCF] px-4 md:px-8 py-4">
+
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
         {/* Logo Section - Larger */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <div className="w-12 h-12 relative">
             <Image
-              src="/photos/img1.jpeg"
+              src="/photos/logo1.png"
               alt="JHSSI Journal Logo"
               width={48}
               height={48}
