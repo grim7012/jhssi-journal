@@ -1,9 +1,10 @@
+import AdPlacement from "@/components/ads/AdPlacement";
+
 export default function AboutSection() {
   return (
     <section className="min-h-[80vh] flex items-center px-6 -mt-16 bg-white">
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
           {/* Clean Journal Cover Display */}
           <div className="relative">
             {/* Main Image with subtle shadow */}

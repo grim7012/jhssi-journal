@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  //output: "export",
+  // uncomment befor npm run build
   images: {
-    unoptimized: true,
+    unoptimized: false,
   },
 };
 

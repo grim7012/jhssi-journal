@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url ="mongodb+srv://harshch02:Chowmein8@cluster0.djr2r.mongodb.net/journal-ads?retryWrites=true&w=majority&authSource=admin"
+
+}
+
+model Ad {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String?
+  imageUrl    String
+  targetUrl   String
+  placement   String   // e.g., "sidebar", "header", "article-top", "article-bottom"
+  isActive    Boolean  @default(true)
+  startDate   DateTime @default(now())
+  endDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  impressions AdImpression[]
+  clicks      AdClick[]
+  views       AdView[]
+
+  @@map("ads")
+}
+
+model AdImpression {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  adId      String   @db.ObjectId
+  sessionId String
+  userId    String?
+  userAgent String?
+  ipAddress String?
+  page      String
+  timestamp DateTime @default(now())
+
+  ad Ad @relation(fields: [adId], references: [id], onDelete: Cascade)
+
+  @@index([adId])
+  @@index([timestamp])
+  @@index([sessionId])
+  @@map("ad_impressions")
+}
+
+model AdView {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  adId         String   @db.ObjectId
+  sessionId    String
+  userId       String?
+  userAgent    String?
+  ipAddress    String?
+  page         String
+  viewDuration Int?     // in milliseconds
+  viewedAt     DateTime @default(now())
+
+  ad Ad @relation(fields: [adId], references: [id], onDelete: Cascade)
+
+  @@index([adId])
+  @@index([viewedAt])
+  @@index([sessionId])
+  @@map("ad_views")
+}
+
+model AdClick {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  adId      String   @db.ObjectId
+  sessionId String
+  userId    String?
+  userAgent String?
+  ipAddress String?
+  page      String
+  clickedAt DateTime @default(now())
+
+  ad Ad @relation(fields: [adId], references: [id], onDelete: Cascade)
+
+  @@index([adId])
+  @@index([clickedAt])
+  @@index([sessionId])
+  @@map("ad_clicks")
+}
+
+model AdDailyMetrics {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  adId            String   @db.ObjectId
+  date            DateTime
+  impressions     Int      @default(0)
+  views           Int      @default(0)
+  clicks          Int      @default(0)
+  uniqueVisitors  Int      @default(0)
+  ctr             Float    @default(0) // Click-through rate
+  viewability     Float    @default(0) // View rate
+  avgViewDuration Float    @default(0) // in seconds
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([adId, date])
+  @@index([adId])
+  @@index([date])
+  @@map("ad_daily_metrics")
+}

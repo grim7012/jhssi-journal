@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import AdPlacement from "./ads/AdPlacement";
 
 export default function Hero() {
   return (
@@ -9,6 +11,7 @@ export default function Hero() {
           src="/photos/hero-full.png"
           alt="Scholarly books and a globe representing global research"
           className="w-full h-full object-cover"
+
         />
         </div>
       
@@ -55,6 +58,13 @@ export default function Hero() {
             </Link>
           </div>
         </div>
+        {/* ad placed here */}
+          
+          <AdPlacement
+            placement="sidebar"
+            className="w-full h-24 mb-8 lg:mb-0"
+          />
+          
       </div>
     </section>
   );
